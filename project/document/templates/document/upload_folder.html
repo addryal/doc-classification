@@ -1,0 +1,38 @@
+{##}
+{#{% extends "base.html" %}#}
+{##}
+{# {% block content %}#}
+{#    <title>Upload new File</title>#}
+{#    <h1>Upload new File</h1>#}
+{#    <form method=post enctype=multipart/form-data>#}
+{#      <input type=file name=file>#}
+{#      <input type=submit value=Upload>#}
+{#    </form>#}
+{##}
+{##}
+{##}
+{##}
+{# {% endblock content %}#}
+
+
+
+{% extends "base.html" %}
+
+ {% block content %}
+    <title>Upload new File</title>
+     <p>Upload text files of the same class using the upload feature below</p>
+    <form method=post enctype=multipart/form-data>
+     <p><input type='file' name='file[]' multiple=''>
+         <br>
+         <input type='submit' value='Upload'>
+    </p>
+    </form>
+
+
+
+
+ {% endblock content %}
+
+
+
+

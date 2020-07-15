@@ -1,0 +1,15 @@
+from app import db,DocumentSample
+import glob,os
+
+file_list  = glob.glob("D:/flask/upload/text_files/*.txt")
+for file_path in file_list:
+        head_tail = os.path.split(file_path)
+        # print(head_tail[1])
+        with open(file_path, encoding="utf8",errors="ignore") as f_input:
+	document_content = f_input.read()
+        doc_content_binary = bytes(document_content,'utf-8')
+        doc = DocumentSample("CSA",head_tail[1] ,doc_content_binary )
+        db.session.add(doc)
+       
+db.session.commit()
+

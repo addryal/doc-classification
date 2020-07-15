@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {# head #}
+    {% block head %}
+        <head>
+            <title> Document Classification </title>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        </head>
+    {% endblock head %}
+
+    {# body #}
+    {% block body %}
+    <body>
+    <div class="wrapper">
+        {# navigation bar #}
+        {% block navbar %}
+        <nav class="navbar" style="background-color: #0033a0;">
+            <div class="container">
+                <a class="navbar-brand title" href="{{ url_for('index') }}">Document Classification</a>
+
+
+                <ul class="nav navbar-nav pull-right nav-list">
+                    <li><a href="{{ url_for('index') }}" class="color-me"> Home </a></li>
+                    <li><a href="{{ url_for('document.delete_folder')}}" class="color-me"> Delete upload </a></li>
+                    <li><a href="{{ url_for('document.upload_folder') }}" class="color-me"> Upload base sample </a></li>
+                    <li><a href="{{ url_for('document.upload_file') }}" class="color-me"> Classify new document </a></li>
+                </ul>
+            </div>
+        </nav>
+        {% endblock navbar %}
+
+        {# empty block for custom content #}
+        {% block content %} {% endblock content %}
+
+    </div>
+    </body>
+    {% endblock body %}
+</html>

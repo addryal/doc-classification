@@ -1,0 +1,35 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    }
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 4.8%;
+    }
+li {
+    font-size: small
+    }
+p {
+    padding-left: 4.8%;
+    font-size: small
+}
+
+span
+    {
+    margin: 2px
+    }
+
+
+.navbar-brand.title {color: #FFFFFF; font-family: Sansita, serif}
+.nav-list { position: relative; right: 7% }
+.wrapper {position: relative; min-height: 120%}
+
+.nav.navbar-nav.pull-right.nav-list li a {
+    color: #FFFFFF;
+}
+
+
+.color-me{
+    color:white;
+}
+
