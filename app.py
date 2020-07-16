@@ -1,8 +1,5 @@
-
-from project import app,db
+from project import app
 from flask import render_template
-
-
 
 @app.route('/')
 def index():
@@ -11,5 +8,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    with app.app_context():
-        db.create_all()

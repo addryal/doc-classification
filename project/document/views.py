@@ -1,18 +1,17 @@
 from flask import Blueprint,render_template,redirect,url_for,request,flash
+from project import db
+from project.models import DocumentSample
 import os
-import io
 from werkzeug.utils import secure_filename
 from project import app
 from project.document.cosine_similarity import correlation_plot,setup_base_csa,check_new_doc
 from project.document.word_cloud import word_frequency_analysis
 import glob
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 
 # Registering Blueprints
 doc_blueprint = Blueprint('document',__name__,template_folder='templates/document')
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "text_files")
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
