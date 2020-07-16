@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 from project import app
 from project.document.cosine_similarity import correlation_plot,setup_base_csa,check_new_doc
 from project.document.word_cloud import word_frequency_analysis
+from project.document.forms import DocumentUploadForm
 import glob
 
 
@@ -55,18 +56,38 @@ def upload_file():
 
 @doc_blueprint.route('/upload_folder',methods=['GET', 'POST'])
 def upload_folder():
+    form = DocumentUploadForm()
     if request.method == 'POST':
         files = request.files.getlist("file[]")
-        # if user does not select file, browser also
-        # submit an empty part without filename
+        name = form.doc_class.data
+
         for file in files:
             if file:
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+         #Inserting documents into the database
+        list_uploads  = glob.glob("D:/flask/upload/text_files/*.txt")
+        for file_path in list_uploads:
+            head_tail = os.path.split(file_path)
+            # print(head_tail[1])
+            with open(file_path, encoding="utf8", errors="ignore") as f_input:
+                document_content = f_input.read()
+            doc_content_binary = bytes(document_content, 'utf-8')
+            doc = DocumentSample(name, head_tail[1], doc_content_binary)
+            db.session.add(doc)
+
+        db.session.commit()
+
+
+
+
+
         word_frequency_analysis(app.config['UPLOAD_FOLDER'])
+
         return render_template('folder.html' ,url='/static/images/word_freq.png' )
 
-    return render_template('upload_folder.html')
+    return render_template('upload_folder.html',form=form)
 
 @doc_blueprint.route('/delete_folder',methods=['GET', 'POST'])
 def delete_folder():
@@ -81,6 +102,15 @@ def delete_folder():
 
 
     return render_template('delete_confirmation.html')
+
+
+@doc_blueprint.route('/view_classes',methods=['GET', 'POST'])
+def view_classes():
+    # Grab a list of puppies from database.
+    documents = DocumentSample.query.all()
+    return render_template('list.html', documents=documents)
+
+
 
 
 if __name__ == '__main__':

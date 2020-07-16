@@ -28,10 +28,14 @@
                     <li><a href="{{ url_for('document.delete_folder')}}" class="color-me"> Delete upload </a></li>
                     <li><a href="{{ url_for('document.upload_folder') }}" class="color-me"> Upload base sample </a></li>
                     <li><a href="{{ url_for('document.upload_file') }}" class="color-me"> Classify new document </a></li>
+                    <li><a href="{{ url_for('document.view_classes') }}" class="color-me"> View uploaded samples </a></li>
                 </ul>
             </div>
         </nav>
         {% endblock navbar %}
+
+
+
 
         {# empty block for custom content #}
         {% block content %} {% endblock content %}

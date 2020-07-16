@@ -19,6 +19,20 @@ span
     margin: 2px
     }
 
+th, td {
+  padding: 10px;
+    border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table
+{
+    margin-left: 4.8%;
+}
+
+
+
+
 
 .navbar-brand.title {color: #FFFFFF; font-family: Sansita, serif}
 .nav-list { position: relative; right: 7% }
