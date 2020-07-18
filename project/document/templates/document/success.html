@@ -7,22 +7,20 @@
     <p> The first page of the content is given below </p>
     <p>{{ text_content }}</p>
     <br>
-    <p>The base similarity computed among the uploaded files is </p>
-    <p>{{ base_csa_correlation }}</p>
-
-    <p>The similarity of the new file uploaded to the corpus is  </p>
-    <p>{{ new_file_correlation }}</p>
-
-     {%  if (base_csa_correlation-new_file_correlation)/base_csa_correlation < 0.1 %}
-     <p>The files are of the <b>same class </b></p>
-     {% endif %}
-
-      {%  if (base_csa_correlation-new_file_correlation)/base_csa_correlation > 0.1 %}
-     <p>The files are of  <b> different classes </b></p>
-     {% endif %}
+    <p>This file is most similar to <b>{{ correl_class }} </b> </p>
 
 
-     <p> </p>
+
+{#     {%  if (base_csa_correlation-new_file_correlation)/base_csa_correlation < 0.1 %}#}
+{#     <p>The files are of the <b>same class </b></p>#}
+{#     {% endif %}#}
+{##}
+{#      {%  if (base_csa_correlation-new_file_correlation)/base_csa_correlation > 0.1 %}#}
+{#     <p>The files are of  <b> different classes </b></p>#}
+{#     {% endif %}#}
+
+
+
 
 
 
